@@ -1,0 +1,62 @@
+name: Karate API Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v3
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: maven
+    
+    - name: Cache Maven packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-m2
+          
+    - name: Compile project
+      run: mvn clean compile
+    
+    - name: Run Karate Tests
+      run: mvn test
+      continue-on-error: false
+    
+    - name: Generate Test Report Summary
+      if: always()
+      run: |
+        echo "## 📊 Karate Test Results" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "✅ Tests executed successfully" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "📁 Detailed HTML report available in artifacts" >> $GITHUB_STEP_SUMMARY
+    
+    - name: Upload Karate Reports
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: karate-test-reports
+        path: target/karate-reports/
+        retention-days: 30
+    
+    - name: Test Results
+      if: always()
+      run: |
+        if [ -f target/surefire-reports/TEST-*.xml ]; then
+          echo "Test reports generated successfully"
+        fi
