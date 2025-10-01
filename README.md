@@ -35,7 +35,7 @@ mvn -version
 mvn clean compile
 
 ---
-
+```
 ## 📁 Estructura del Proyecto
 
 simple-grocery-store-karate/
@@ -63,7 +63,7 @@ simple-grocery-store-karate/
 ├── README.md
 └── .github/workflows/
     └── karate-tests.yml
-
+```
 ---
 
 ## 🧪 Casos de Prueba
