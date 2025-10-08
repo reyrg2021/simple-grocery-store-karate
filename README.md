@@ -128,10 +128,10 @@ Después de ejecutar los tests:
 # El reporte se genera automáticamente en:
 target/karate-reports/karate-summary.html
 
-# Abrir en Windows
+### Abrir en Windows
 start target/karate-reports/karate-summary.html
 
-# Abrir en Mac/Linux
+### Abrir en Mac/Linux
 open target/karate-reports/karate-summary.html
 
 ---
@@ -149,13 +149,15 @@ var config = {
 
 ### Ambientes
 
-# Test (default)
+### Test (default)
+```
 mvn test
-
-# Desarrollo
+```
+### Desarrollo
+```
 mvn test -Dkarate.env=dev
-
-# Producción
+```
+### Producción
 mvn test -Dkarate.env=prod
 
 ---
