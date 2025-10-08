@@ -27,13 +27,13 @@ Migrado desde Bruno CLI con mejoras en legibilidad, paralelización y reportes.
 ---
 
 ## 🚀 Instalación
-
+```
 git clone https://github.com/reyrg2021/simple-grocery-store-karate.git
 cd simple-grocery-store-karate
 java -version
 mvn -version
 mvn clean compile
-
+```
 ---
 ```
 ## 📁 Estructura del Proyecto
