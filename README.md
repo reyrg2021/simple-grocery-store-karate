@@ -107,19 +107,19 @@ mvn test
 
 ### Ejecutar suite específica
 
-# Solo Setup
+### Solo Setup
 mvn test -Dtest=TestRunner#testSetup
 
-# Solo Happy Paths
+### Solo Happy Paths
 mvn test -Dtest=TestRunner#testHappyPaths
 
-# Solo Edge Cases
+### Solo Edge Cases
 mvn test -Dtest=TestRunner#testEdgeCases
 
-# Solo Negative Cases
+### Solo Negative Cases
 mvn test -Dtest=TestRunner#testNegativeCases
 
-# Solo E2E Flow
+### Solo E2E Flow
 mvn test -Dtest=TestRunner#testAutomatedFlow
 
 ### Ver reportes HTML
